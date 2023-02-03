@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="bluethink" translate="label" sortOrder="100">
+            <label>Bluethink Inc</label>
+        </tab>
+        <section id="newsletterpopup" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Newsletter Popup</label>
+            <tab>bluethink</tab>
+            <resource>Bluethinkinc_NewsletterPopup::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="html_content" sortOrder="10" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content</label>
+                    <comment>HTML content show on popup</comment>
+                </field>
+                <field id="width" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Width</label>
+                    <validate>validate-digits</validate>
+                    <comment>In pixel</comment>
+                </field>
+                <field id="background_color" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background color</label>
+                    <validate>jscolor {hash:true,refine:false}</validate>
+                </field>
+                <field id="text_color" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text color</label>
+                    <validate>jscolor {hash:true,refine:false}</validate>
+                </field>
+                <field id="newsletter_image" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                    <upload_dir config="system">newsletter</upload_dir>
+                </field>
+            </group>
+            <group id="newsletter_pages_on" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Newsletter To Show On Pages</label>
+                <field id="newsletter_pages_to_show" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Page(s) to show</label>
+                    <source_model>Bluethinkinc\NewsletterPopup\Model\Config\Source\PageToShow</source_model>
+                </field>
+                <field id="newsletter_pages_to_include" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Include page(s)</label>
+                    <comment><![CDATA[
+                            <span>Include Page(s) with URL contains</span><br />
+                            <span>Separated by a new line</span>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="newsletter_pages_to_show">1</field>
+                    </depends>
+                </field>
+                <field id="newsletter_pages_to_exclude" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude page(s)</label>
+                    <comment><![CDATA[
+                            <span>Exclude Page(s) with URL contains</span><br />
+                            <span>Separated by a new line</span>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="newsletter_pages_to_show">2</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="newsletter_pages_when" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Newsletter Pages To Show When</label>
+                <field id="popup_appear" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Popup Appears When</label>
+                    <source_model>Bluethinkinc\NewsletterPopup\Model\Config\Source\Appear</source_model>
+                </field>
+                <field id="delay" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>After X seconds</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="popup_appear">2</field>
+                    </depends>
+                </field>
+                <field id="popup_appear_again_after" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup will be shown again after</label>
+                    <validate>validate-digits</validate>
+                    <comment>days. Leave empty to redisplay the popup after 1 days</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

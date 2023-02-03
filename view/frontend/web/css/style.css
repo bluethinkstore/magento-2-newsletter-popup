@@ -1,0 +1,126 @@
+.popup-loader {
+    display: none;
+    position: absolute;
+    width: 100%;
+    padding-top: 15px;
+  }
+  
+  img.loader {
+    width: 2%;
+  }
+
+  #bt-popup {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .bt-popup-title {
+    font-size: 30px;
+    color: rgb(0, 131, 208);
+    line-height: 1.066;
+    text-align: left;
+  }
+  
+  .bt-popup-sub-title {
+    font-size: 14px;
+    color: rgb(34, 34, 34);
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.8;
+    text-align: left;
+    padding-top: 5px;
+  }
+  
+  .bt-popup-text {
+    font-size: 14px;
+    color: rgb(34, 34, 34);
+    line-height: 1.714;
+    text-align: left;
+    padding-top: 5px;
+     padding-bottom: 10px;
+     width: 100% !important;
+  }
+  
+  .bt-popup-form {
+    width: 75%;
+    text-align: left;
+  }
+  
+  .bt-popup_field_newsletter {
+      padding-right: 10%;
+  }
+  
+  .bt-popup-input {
+    background-color: #e5e5e5 !important;
+    border: none !important;
+    height: 35px !important;
+    font-family: sans-serif !important;
+  }
+  
+  .bt-popup-input::-webkit-input-placeholder {
+    font-size: 14px !important;
+    font-style: italic;
+    padding-left: 15px;
+    color: rgb(162, 162, 162) !important;
+    line-height: 1.714;
+    text-align: left;
+  }
+  
+  .bt-popup-button {
+    background-color: #ff5a15 !important;
+    width: 130px;
+    height: 30px;
+    border-radius: 10px;
+    border: none !important;
+    font-weight: bold !important;
+    padding: 0 !important;
+    margin: 15px 0 0 0px;
+}
+  input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"], input[type*="date"], input[type="email"] {
+    background: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #c2c2c2;
+    border-radius: 1px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    height: 32px;
+    line-height: 1.42857143;
+    padding: 0 9px;
+    vertical-align: baseline;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+.bt-popup-img-content{
+    padding-top: 8px;
+}
+.bt-popup-text-content {
+  width: 70%;
+}
+@media screen and (max-width: 768px) {
+    .bt-popup-title {
+        font-size: 22px;
+    } 
+    .bt-popup-sub-title {
+        font-size: 12px;
+    }
+    .bt-popup-text {
+        font-size: 12px;
+        width: 100%;
+    }
+    .bt-popup-form {
+        width: 100%;
+    }
+    .bt-popup-text-content {
+        width: 100%;
+    }
+    .bt-popup-img-content {
+        position: inherit;
+        width: 100%;
+        margin-top: 20px;
+    }
+    #bt-popup {
+        display: block;
+    }
+}

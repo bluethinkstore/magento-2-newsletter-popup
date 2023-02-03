@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <newsletterpopup>
+            <general>
+                <html_content>
+<![CDATA[
+<div id="bt-popup">
+    <div class="bt-popup-text-content">
+        <div class="bt-popup-title">Subscribe</div>
+        <div class="bt-popup-sub-title">TO OUR NEWSLETTER</div>
+        <div class="bt-popup-text bt-custom-text">Subsribe to our email newsletter today to receive update on the latest news, tutorials and special offers!</div>
+        <form class="form subscribe bt-popup-form" action="{{form_url}}" method="post"
+            data-mage-init='{"validation": {}}'
+            id="bt-validate-newsletter">
+            <div class="bt-popup_field_newsletter">
+                <input name="email" type="email" id="bt_popup_newsletter" class="bt-popup-input"
+                    placeholder="Enter your email"
+                    data-validate="{required:true, 'validate-email':true}">
+            </div>
+            <button class="action primary bt-popup-button" title="Send" type="submit">
+               Subscribe
+            </button>
+        </form>
+    </div>
+    <div class="bt-popup-img-content" >
+        <img src="{{image_url}}" alt="newslatter">
+    </div>
+</div>
+]]>
+                </html_content>
+                
+                <width>800</width>
+                <height>321</height>
+                <background_color>#3d9bc7</background_color>
+                <text_color>#FFFFFF</text_color>
+            </general>
+            <newsletter_pages_on>
+                <newsletter_pages_to_show>1</newsletter_pages_to_show>
+                <newsletter_pages_to_include>
+<![CDATA[
+cms_index_index
+what-is-new.html
+]]>
+                </newsletter_pages_to_include>
+                <cookieExp>0</cookieExp>
+            </newsletter_pages_on>
+
+            <newsletter_pages_when>
+                <popup_appear>1</popup_appear>
+                <delay>5</delay>
+                <cookieExp>0</cookieExp>
+            </newsletter_pages_when>
+        </newsletterpopup>
+    </default>
+</config>

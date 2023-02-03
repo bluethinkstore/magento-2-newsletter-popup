@@ -1,0 +1,117 @@
+<?php
+
+/** @var \Bluethink\NewsletterPopup\Block\Popup $block */
+if ($block->showPage()) { ?>
+    <div id="newsletter-popup" style="display:none;">
+        <?=$block->getContentHtml()?>
+    </div>
+    <script>
+        require(
+            [
+                'jquery',
+                'Magento_Ui/js/modal/modal'
+            ],
+            function(
+                $,
+                modal
+            ) {
+                var options = {
+                    type: 'popup',
+                    autoOpen: true,
+                    responsive: true,
+                    innerScroll: true,
+                    title: false,
+                    clickableOverlay: false,
+                    buttons: false
+                };
+                setTimeout(function() {
+                    var popup = modal(options, $('#newsletter-popup'));
+                    $("#newsletter-popup").modal("openModal");
+                    $('.modals-wrapper').css("display", "block");
+                    $("#newsletter-popup").modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    
+                },<?=$block->getAfterSecond()*1000?>);
+                $('#newsletter-popup').on('modalclosed', function() { 
+                    var date = new Date();
+                    var appear = '<?= /* @noEscape */ $block->checkAppearAgain()?>';
+                    appear = appear * 1000;
+                    date.setTime(date.getTime() + 24 * 60 * 60 * appear);
+                    document.cookie="appear_again_newsletter="+date;
+                });
+
+                $( "#bt-validate-newsletter" ).submit(function (e) {
+                    e.preventDefault();
+                    var email = $("#bt_popup_newsletter").val();
+                    var url = $( "#bt-validate-newsletter" ).attr('action');
+                    
+                    $.ajax({
+                        showLoader: true, // enable loader
+                        url: url,
+                        dataType: 'json',
+                        type: 'POST',
+                        data: {email: email},
+                        success: function (data) {
+                            console.log(data);
+                            if (data.success) {
+                                var date = new Date();
+                                var appear = '<?= /* @noEscape */ $block->checkAppearAgain()?>';
+                                appear = appear * 1000;
+                                date.setTime(date.getTime() + 24 * 60 * 60 * appear);
+                                document.cookie="appear_again_newsletter="+date;
+                                $("#newsletter-popup").modal("closeModal");
+                            }
+                        }
+                    });
+                });
+            }
+        );
+    </script>
+    <style>
+        .modals-wrapper {
+            display:none;
+        }
+        .modal-popup._inner-scroll .modal-inner-wrap {
+            background-color: <?= /** @noEscape */ $block->getBackgroundColor() ?>;
+            width: <?= /** @noEscape */ ($block->getWidthPopup()+50) ?>px!important;
+        }
+        .bt-popup-text-content {
+            background-color: <?= /** @noEscape */ $block->getBackgroundColor() ?>;
+        }
+        .bt-popup-text, .bt-popup-title, .bt-popup-sub-title {
+            color: <?= /** @noEscape */ $block->getTextColor() ?>;
+        }
+        .modal-slide._inner-scroll .modal-content {
+            overflow-y: hidden;
+        }
+        .modal-content {
+            margin-bottom: 44px;
+        }
+        .modal-slide .modal-header, .modal-slide .modal-content, .modal-slide .modal-footer {
+            padding-bottom:0px;
+        }
+        .modal-popup .modal-inner-wrap {
+            top: 25%;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .modal-popup.modal-slide._inner-scroll .modal-inner-wrap {
+                max-width: 88%;
+            }
+            .modal-slide._inner-scroll .modal-content {
+                height: auto;
+            }
+            .modal-popup.modal-slide._inner-scroll .modal-inner-wrap {
+                height: auto;
+                min-height: auto;
+                margin-top: 50px;
+                border-radius: 4px;
+            }
+            .modal-content {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+<?php } ?>
