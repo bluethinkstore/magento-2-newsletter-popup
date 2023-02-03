@@ -1,5 +1,5 @@
 {
-    "name": "bluethinkinc/module-newsletterpopup",
+    "name": "bluethinkinc/magento-2-newsletter-popup",
     "description": "Newsletter Popup",
     "type": "magento2-module",
     "minimum-stability": "dev",
